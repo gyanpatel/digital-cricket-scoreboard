@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="3">
+  <title>Score Board Bracknell Cricket Club</title>
+<link rel="icon" href="assets/images/favicon.ico" type="image/gif" >
+<style>
+  @font-face {
+   font-family: DigitalScoreBoard;
+   src: url(assets/css/led_display-7.ttf);
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.full-height {
+  height: 100%;
+  background: {{ .BgColor}};
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  height:100%;
+}
+
+th, td {
+  text-align: center;
+  font-family: DigitalScoreBoard;
+  padding: 1px;
+  font-size: 100px;
+  color:green;
+}
+</style>
+</head>
+<body>
+<div class="full-height">
+<table>
+  <tr>
+    <td>Bat.{{.Bat1}} {{.Bat1Name}}</td>
+    <td><img src="assets/images/favicon.ico" alt="" border=3 height=200 width=300></td>
+    <td>Bat.{{.Bat2}} {{.Bat2Name}}</td>
+  </tr>
+  <tr>
+    <td style = "color:red">{{.Bat1score}}</td>
+    <td></td>
+    <td style = "color:red">{{.Bat2score }}</td>
+ </tr>
+ <tr>
+  <td>Overs</td>
+  <td>Total</td>
+  <td>Wickets</td>
+</tr>
+<tr>
+  <td style = "color:red">{{ .FiOvers}}</td>
+  <td style = "color:red">{{ .FiScore}}</td>
+  <td style = "color:red">{{ .FiWickets}}</td>
+</tr>
+<tr>
+  <td style = "color:blueviolet">1st Innings</td>
+  <td style = "color:blueviolet">{{ .SiScore}}/{{ .SiWickets}}</td>
+  <td style = "color:blueviolet"> ({{.SiOvers}} Ov)</td>
+</tr>
+
+</table>
+</div>
+</body>
+</html>
+

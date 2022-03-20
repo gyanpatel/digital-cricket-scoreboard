@@ -1,0 +1,143 @@
+{{define "_menu.html"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>BCC Scoreboard</title>
+
+    <link rel="icon" href="assets/images/favicon.ico" type="image/gif">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="assets/css/styles.css" rel="stylesheet" />
+    <script src="assets/js/scripts.js"></script>
+
+
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-info">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="/"><i class="fas fa-home"></i>BCC Scoreboard</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div id="timerDigital" class="input-group">
+                <button type="button" class="btn btn-warning " onclick="history.back()">Back</button>
+                <canvas id="canvas" width="40" height="40" style="background-color:#333"></canvas>
+            </div>
+        </form>
+        <!-- Navbar
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <!---   <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>  
+                    <li><a class="dropdown-item" href="logout">Logout</a></li>
+                </ul>
+            </li>
+        </ul>-->
+    </nav>
+    <div id="layoutSidenav">
+        {{template "_sidenav.html" .}}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">BCC Scoreboard</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">BCC Scoreboard</li>
+                    </ol>
+                    <script>
+                        var canvas = document.getElementById("canvas");
+                        var ctx = canvas.getContext("2d");
+                        var radius = canvas.height / 2;
+                        ctx.translate(radius, radius);
+                        radius = radius * 0.90
+                        setInterval(drawClock, 1000);
+
+                        function drawClock() {
+                            drawFace(ctx, radius);
+                            drawNumbers(ctx, radius);
+                            drawTime(ctx, radius);
+                        }
+
+                        function drawFace(ctx, radius) {
+                            var grad;
+                            ctx.beginPath();
+                            ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+                            ctx.fillStyle = 'white';
+                            ctx.fill();
+                            grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+                            grad.addColorStop(0, '#333');
+                            grad.addColorStop(0.5, 'white');
+                            grad.addColorStop(1, '#333');
+                            ctx.strokeStyle = grad;
+                            ctx.lineWidth = radius * 0.1;
+                            ctx.stroke();
+                            ctx.beginPath();
+                            ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
+                            ctx.fillStyle = '#333';
+                            ctx.fill();
+                        }
+
+                        function drawNumbers(ctx, radius) {
+                            var ang;
+                            var num;
+                            ctx.font = radius * 0.15 + "px arial";
+                            ctx.textBaseline = "middle";
+                            ctx.textAlign = "center";
+                            for (num = 1; num < 13; num++) {
+                                ang = num * Math.PI / 6;
+                                ctx.rotate(ang);
+                                ctx.translate(0, -radius * 0.85);
+                                ctx.rotate(-ang);
+                                ctx.fillText(num.toString(), 0, 0);
+                                ctx.rotate(ang);
+                                ctx.translate(0, radius * 0.85);
+                                ctx.rotate(-ang);
+                            }
+                        }
+
+                        function drawTime(ctx, radius) {
+                            var now = new Date();
+                            var hour = now.getHours();
+                            var minute = now.getMinutes();
+                            var second = now.getSeconds();
+                            //hour
+                            hour = hour % 12;
+                            hour = (hour * Math.PI / 6) +
+                                (minute * Math.PI / (6 * 60)) +
+                                (second * Math.PI / (360 * 60));
+                            drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+                            //minute
+                            minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+                            drawHand(ctx, minute, radius * 0.8, radius * 0.07);
+                            // second
+                            second = (second * Math.PI / 30);
+                            drawHand(ctx, second, radius * 0.9, radius * 0.02);
+                        }
+
+                        function drawHand(ctx, pos, length, width) {
+                            ctx.beginPath();
+                            ctx.lineWidth = width;
+                            ctx.lineCap = "round";
+                            ctx.moveTo(0, 0);
+                            ctx.rotate(pos);
+                            ctx.lineTo(0, -length);
+                            ctx.stroke();
+                            ctx.rotate(-pos);
+                        }
+                    </script>
+                    {{end}}

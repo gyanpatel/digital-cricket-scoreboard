@@ -1,0 +1,20 @@
+{{define "_sidenav.html"}}
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading  text-white sm">Menu</div>
+
+                    <a class="nav-link" href="#" onClick="MyWindow=window.open('scoreboardview','MyWindow','width=1000,height=800'); return false;">
+                    <div class="sb-nav-link-icon"><i class="fas fa-eye"></i></div>
+                    View Scoreboard
+                </a>
+            </div>
+        </div>
+        <div class="sb-sidenav-footer">
+            <div class="small">Logged in as:</div>
+            BCC Score Admin
+        </div>
+    </nav>
+</div>
+{{ end }}

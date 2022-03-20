@@ -1,0 +1,99 @@
+{{template "_menu.html" .}}
+<style>
+  .alert {
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+  }
+</style>
+<form method="post" action="/savescore" id="savescore">
+  <div class="form-control bg-info">
+    <div class="row g-3">
+      <div class="col-sm-7">
+        <label for="matchid">Match Between </label>
+        <input id="matchid" type="text" name="matchid" Value="{{ .Match}}">
+        <label for="matchid">Scoreboard Background </label>
+        <input list="bgcolorl" id="bgcolor" name="bgcolor" value="{{ .BgColor}}">
+        <datalist id="bgcolorl">
+          <option value="white">white</option>
+          <option value="black">black</option>
+          <option value="yellow">yellow</option>
+        </datalist>
+        </div>
+    </div> <br>
+    <div class="row g-4">
+      <div class="col-sm-3">
+        <label for="bat1">Bat1</label>
+        <input id="bat1" type="number" name="bat1" min="1" max="11" step="1" value="{{ .Bat1}}" required>
+        <input id="bat1name" type="text" name="bat1name" placeholder="name"  value="{{ .Bat1Name}}" required>
+        <input id="bat1score" type="number" name="bat1score" value="{{ .Bat1score}}" required >
+      </div>
+      <div class="col-sm-3">
+        <label for="bat2">Bat2</label>
+        <input id="bat2" type="number" name="bat2" min="1" max="11" step="1" value="{{ .Bat2}}" required>
+        <input id="bat2name" type="text" name="bat2name"  placeholder="name"  value="{{ .Bat2Name}}" required>
+        <input id="bat2score" type="number" name="bat2score" value="{{ .Bat2score}}" required placeholder="score">
+      </div> 
+    </div> <br>
+    <div class="row g-4">
+      <div class="col-sm-3">
+        <label for="fiscore">Total</label>
+        <input id="fiscore" type="number" min="0" step="1" name="fiscore" value="{{ .FiScore}}">
+      </div>
+      <div class="col-sm-3">
+        <label for="fiwicketsct">Wickets</label>
+        <input list="wickets" id="fiwicketsct" name="fiwicketsct" value="{{ .FiWickets}}">
+        <datalist id="wickets">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </datalist>
+      </div>
+      <div class="col-sm-3">
+        <label for="fiovers">Overs</label>
+        <input id="fiovers" type="number" min="0" step="0.1" name="fiovers" value="{{ .FiOvers}}">
+      </div>
+   
+      <div class="col-sm-3">
+        <label for="fiboard">1st Innings (Total/Wickets/Overs)</label>
+        <div id="fiboard" name="fiboard">
+          <input class="form-control form-control-sm" id="siscore" type="number" min="0" step="1" name="siscore"
+            value="{{ .SiScore}}">
+          <input list="wickets" id="siwicketsct" name="siwicketsct" value="{{ .SiWickets}}">
+          <datalist id="wickets">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </datalist>
+          <input id="siovers" type="number" min="0" step="0.1" name="siovers" value="{{ .SiOvers}}">
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-success btn-md">Save Score</button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+</main>
+{{template "_footer.html"}}
+
+</body>
+
+</html>
