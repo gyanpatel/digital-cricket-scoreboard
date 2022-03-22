@@ -55,6 +55,8 @@ func handleSaveScore(w http.ResponseWriter, r *http.Request) {
 	bat1score := params.Get("bat1score")
 	bat2score := params.Get("bat2score")
 	bgcolor := params.Get("bgcolor")
+	headcolor := params.Get("headcolor")
+	scorecolor := params.Get("scorecolor")
 
 	updatedScore := ScoreDetails{
 		Match:      matchID,
@@ -73,6 +75,8 @@ func handleSaveScore(w http.ResponseWriter, r *http.Request) {
 		Bat1score:  bat1score,
 		Bat2score:  bat2score,
 		BgColor:    bgcolor,
+		HeadColor:  headcolor,
+		ScoreColor: scorecolor,
 	}
 
 	file, err := json.MarshalIndent(updatedScore, "", " ")

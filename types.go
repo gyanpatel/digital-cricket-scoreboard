@@ -17,4 +17,6 @@ type ScoreDetails struct {
 	Bat1score  string `json:"bat1score"`
 	Bat2score  string `json:"bat2score"`
 	BgColor    string `json:"bgcolor"`
+	HeadColor  string `json:"headcolor"`
+	ScoreColor string `json:"scorecolor"`
 }

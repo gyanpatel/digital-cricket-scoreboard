@@ -30,37 +30,39 @@ th, td {
   font-family: DigitalScoreBoard;
   padding: 1px;
   font-size: 100px;
-  color:green;
+  color:{{.HeadColor}};
 }
 </style>
+
 </head>
 <body>
 <div class="full-height">
 <table>
   <tr>
-    <td>Bat.{{.Bat1}} {{.Bat1Name}}</td>
+    <td >Bat.{{.Bat1}} {{.Bat1Name}}</td>
     <td><img src="assets/images/favicon.ico" alt="" border=3 height=200 width=300></td>
+    
     <td>Bat.{{.Bat2}} {{.Bat2Name}}</td>
   </tr>
   <tr>
-    <td style = "color:red">{{.Bat1score}}</td>
+    <td style = "color:{{.ScoreColor}}">{{.Bat1score}}</td>
     <td></td>
-    <td style = "color:red">{{.Bat2score }}</td>
+    <td style = "color:{{.ScoreColor}}">{{.Bat2score }}</td>
  </tr>
  <tr>
-  <td>Overs</td>
-  <td>Total</td>
-  <td>Wickets</td>
+  <td >Overs</td>
+  <td >Total</td>
+  <td >Wickets</td>
 </tr>
 <tr>
-  <td style = "color:red">{{ .FiOvers}}</td>
-  <td style = "color:red">{{ .FiScore}}</td>
-  <td style = "color:red">{{ .FiWickets}}</td>
+  <td style = "color:{{.ScoreColor}}">{{ .FiOvers}}</td>
+  <td style = "color:{{.ScoreColor}}">{{ .FiScore}}</td>
+  <td style = "color:{{.ScoreColor}}">{{ .FiWickets}}</td>
 </tr>
 <tr>
-  <td style = "color:blueviolet">1st Innings</td>
-  <td style = "color:blueviolet">{{ .SiScore}}/{{ .SiWickets}}</td>
-  <td style = "color:blueviolet"> ({{.SiOvers}} Ov)</td>
+  <td >1st Innings</td>
+  <td style = "color:{{.ScoreColor}}">{{ .SiScore}}/{{ .SiWickets}}</td>
+  <td style = "color:{{.ScoreColor}}"> ({{.SiOvers}} Ov)</td>
 </tr>
 
 </table>
