@@ -14,7 +14,7 @@
  "bat2name": "Sehwag",
  "bat1score": "16",
  "bat2score": "19",
- "bgcolor": "#ffffff",
- "headcolor": "#0b510c",
+ "bgcolor": "#000000",
+ "headcolor": "#00ff04",
  "scorecolor": "#ff0000"
 }
