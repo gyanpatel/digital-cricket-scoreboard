@@ -22,6 +22,7 @@ func main() {
 	http.HandleFunc("/", handleScore)
 	http.HandleFunc("/scoreboardview", handleScoreBoard)
 	http.HandleFunc("/scoreview", handleScore)
+	http.HandleFunc("/clock", handleClock)
 	http.HandleFunc("/savescore", handleSaveScore)
 	log.Fatal(http.ListenAndServe(":"+"8080", nil))
 }

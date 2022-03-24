@@ -32,6 +32,14 @@ func handleScoreBoard(w http.ResponseWriter, r *http.Request) {
 		log.Println("ERROR:handleScoreBoard Error occured Parsing - templates/login ", err)
 	}
 }
+func handleClock(w http.ResponseWriter, r *http.Request) {
+	currentScore := readScoreFile()
+	t := template.Must(template.ParseFS(templates, "templates/clock.html"))
+	err := t.Execute(w, currentScore)
+	if err != nil {
+		log.Println("ERROR:handleScoreBoard Error occured Parsing - templates/login ", err)
+	}
+}
 
 func handleSaveScore(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
